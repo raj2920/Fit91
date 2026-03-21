@@ -1210,5 +1210,30 @@
       };
     });
   </script>
+  <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "YOUR_KEY",
+  authDomain: "fit9-website.firebaseapp.com",
+  projectId: "fit9-website",
+  storageBucket: "fit9-website.appspot.com",
+  messagingSenderId: "37348617247",
+  appId: "1:37348617247:web:cf60b826833150cf23b92a"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+window.saveContact = async function(name, phone) {
+  await addDoc(collection(db, "contacts"), {
+    name: name,
+    phone: phone,
+    time: new Date()
+  });
+  alert("Submitted Successfully!");
+};
+</script>
 </body>
 </html>
